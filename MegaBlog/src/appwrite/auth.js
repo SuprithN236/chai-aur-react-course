@@ -2,7 +2,7 @@ import conf from "../conf/conf";
 import { Client, Account, ID } from "appwrite";
 
 // you are creating a class here, you will have all the methods for authentication inside this.
-class AuthService {
+export class AuthService {
   client = new Client();
   account;
 
@@ -28,15 +28,15 @@ class AuthService {
         return userAccount;
       }
     } catch (error) {
-      throw error;
+      console.log("appwrite service :: signup :: error", error);
     }
   }
 
   async login({ email, password }) {
     try {
-      return await this.account.createEmailSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      throw error;
+      console.log("appwrite service :: login :: error", error);
     }
   }
 
